@@ -7,6 +7,11 @@ import ThemeLayout from "../src/components/Layouts/ThemeLayout";
 import { Provider } from "react-redux";
 import { store } from "../src/redux";
 import { Toaster } from "react-hot-toast";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } },

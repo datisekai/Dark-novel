@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  url: process.env.BACKEND_URL,
+  baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
 });
 
 export default axiosClient;

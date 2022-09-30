@@ -189,6 +189,7 @@ export const getDesignTokens = (mode: any) => ({
           error,
           info: {
             main: "#666",
+            200: "#fff",
           },
           warning,
           success,
@@ -210,7 +211,7 @@ export const getDesignTokens = (mode: any) => ({
           info: {
             main: "#f5f5f5",
             100: "#ccc",
-            200: "#999",
+            200: "#fff",
             300: "#666",
           },
           warning,

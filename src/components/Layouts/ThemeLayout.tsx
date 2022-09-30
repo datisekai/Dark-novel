@@ -1,6 +1,5 @@
 import { createTheme, ThemeProvider } from "@mui/material";
-import React, { FC } from "react";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { FC } from "react";
 import { ChildrenProps } from "../../models";
 import { getDesignTokens } from "../../theme";
 

@@ -25,3 +25,14 @@ a {
     background: black;
   }
 }
+#progress-container {
+  width: 100%;
+  height: 2px;
+}
+
+/* The progress bar (scroll indicator) */
+#progress-bar {
+  height: 2px;
+  background-image: linear-gradient(to right, #0099f7, #f11712);
+  width: 0%;
+}

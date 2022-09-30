@@ -6,7 +6,7 @@ import { DoneNovel } from "../models/doneNovel";
 interface IHomeAPI {
   hot: () => Promise<HotNovel[]>;
   upComing: () => Promise<UpComingNovel[]>;
-  done: () => Promise<DoneNovel>;
+  done: () => Promise<DoneNovel[]>;
 }
 
 const HomeAPI: IHomeAPI = {
