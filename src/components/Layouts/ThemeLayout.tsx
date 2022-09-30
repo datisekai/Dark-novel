@@ -4,7 +4,7 @@ import { ChildrenProps } from "../../models";
 import { getDesignTokens } from "../../theme";
 
 const ThemeLayout: FC<ChildrenProps> = ({ children }) => {
-  const theme = createTheme(getDesignTokens("light"));
+  const theme = createTheme(getDesignTokens("dark"));
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
