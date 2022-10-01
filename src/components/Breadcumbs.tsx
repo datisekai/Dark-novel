@@ -1,8 +1,12 @@
 import { Breadcrumbs, Link as LinkMUI, Typography } from "@mui/material";
 import Link from "next/link";
-import React from "react";
+import React, { FC } from "react";
 
-const Breadcumbs = () => {
+interface IBreadcumbs {
+  current: string;
+}
+
+const Breadcumbs: FC<IBreadcumbs> = ({ current }) => {
   return (
     <Breadcrumbs aria-label='breadcrumb'>
       <Link href='/'>
@@ -11,7 +15,7 @@ const Breadcumbs = () => {
         </LinkMUI>
       </Link>
 
-      <Typography color='text.primary'>Breadcrumbs</Typography>
+      <Typography color='text.primary'>{current}</Typography>
     </Breadcrumbs>
   );
 };

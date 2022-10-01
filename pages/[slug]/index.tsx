@@ -5,6 +5,7 @@ import {
   IconButton,
   Stack,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React, { FC } from "react";
@@ -26,6 +27,7 @@ import ShareNovel from "../../src/components/ShareNovel";
 import ArticleIcon from "@mui/icons-material/Article";
 import TextMore from "../../src/components/TextMore";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
+import Meta from "../../src/components/Meta";
 
 interface IDetailNovel {
   data: Novel;
@@ -33,161 +35,184 @@ interface IDetailNovel {
 }
 
 const DetailNovel: FC<IDetailNovel> = ({ data, slug }) => {
-  console.log(data);
+  const {
+    palette: { primary },
+  } = useTheme();
   return (
-    <MainLayout>
-      <WidthLayout>
-        <Box pt={2}>
-          <Breadcumbs />
-          <Typography
-            mt={2}
-            fontSize={{ md: 20, xs: 17 }}
-            fontWeight={600}
-            align='center'
-            color='text.primary'
-            component={"h1"}
-          >
-            {data?.name}
-          </Typography>
-          <FlexBox
-            mt={2}
-            alignItems='center'
-            flexDirection={{ md: "row", xs: "column" }}
-          >
-            <LazyLoadImage
-              src={data?.image}
-              alt={data?.name}
-              style={{ aspectRatio: 215 / 322 }}
-            />
-            <Stack spacing={2} ml={{ md: 5, xs: 0 }} mt={{ md: 0, xs: 2 }}>
-              <FlexBox alignItems={"center"}>
-                <Person2Icon color='info' />
-                <Typography
-                  ml={1}
-                  fontSize={{ md: 16, xs: 14 }}
-                  fontWeight={500}
-                  color='text.primary'
-                >
-                  Tác giả: {data?.author}
-                </Typography>
-              </FlexBox>
-              <FlexBox alignItems={"center"}>
-                <RssFeedIcon color='info' />
-                <Typography
-                  ml={1}
-                  fontSize={{ md: 16, xs: 14 }}
-                  fontWeight={500}
-                  color='text.primary'
-                >
-                  Tình trạng: {data?.status}
-                </Typography>
-              </FlexBox>
-              <FlexBox alignItems={"center"}>
-                <FormatListBulletedIcon color='info' />
-                <FlexBox alignItems={"center"} flexWrap='wrap'>
+    <>
+      <Meta
+        title={data?.name}
+        description={data?.description}
+        image={data?.image}
+      />
+      <MainLayout>
+        <WidthLayout>
+          <Box pt={2}>
+            <Breadcumbs current={data?.name} />
+            <Typography
+              mt={2}
+              fontSize={{ md: 20, xs: 17 }}
+              fontWeight={600}
+              align='center'
+              color='text.primary'
+              component={"h1"}
+            >
+              {data?.name}
+            </Typography>
+            <FlexBox
+              mt={2}
+              alignItems='center'
+              flexDirection={{ md: "row", xs: "column" }}
+            >
+              <LazyLoadImage
+                src={data?.image}
+                alt={data?.name}
+                style={{ aspectRatio: 215 / 322 }}
+              />
+              <Stack spacing={2} ml={{ md: 5, xs: 0 }} mt={{ md: 0, xs: 2 }}>
+                <FlexBox alignItems={"center"}>
+                  <Person2Icon color='info' />
                   <Typography
                     ml={1}
                     fontSize={{ md: 16, xs: 14 }}
                     fontWeight={500}
                     color='text.primary'
                   >
-                    Thể loại:
+                    Tác giả: {data?.author}
                   </Typography>
-                  {data?.categories?.map((item: Category) => (
-                    <Link key={item.href} href={`/the-loai/${item.href}`}>
-                      <Typography
-                        color={"primary"}
-                        sx={{
-                          ":hover": {
-                            textDecoration: "underline",
-                            cursor: "pointer",
-                          },
-                          ml: 2,
-                        }}
-                        fontSize={{ md: 16, xs: 14 }}
-                      >
-                        {item.name}
-                      </Typography>
-                    </Link>
-                  ))}
                 </FlexBox>
-              </FlexBox>
-              <Stack direction={"row"} spacing={2} alignItems={"center"}>
-                <Button variant='contained' color='info'>
-                  Đọc từ đầu
-                </Button>
-                <Button variant='contained' color='info'>
-                  Đọc mới nhất
-                </Button>
-                <Button variant='contained' color='primary'>
-                  Đọc tiếp
-                </Button>
-              </Stack>
-              <ShareNovel title={slug} />
-            </Stack>
-          </FlexBox>
-          <Box mt={4}>
-            <FlexBox
-              sx={{ borderBottom: "1px solid #ccc" }}
-              alignItems={"center"}
-            >
-              <ArticleIcon fontSize='medium' color='info' />
-              <Typography
-                textTransform={"uppercase"}
-                fontSize={{ md: 17, xs: 15 }}
-                fontWeight={500}
-                color='text.primary'
-                ml={1}
-              >
-                Nội dung
-              </Typography>
-            </FlexBox>
-            <TextMore description={data?.description} />
-          </Box>
-          <Box mt={4}>
-            <FlexBox
-              sx={{ borderBottom: "1px solid #ccc" }}
-              alignItems={"center"}
-            >
-              <FactCheckIcon fontSize='medium' color='info' />
-              <Typography
-                textTransform={"uppercase"}
-                fontSize={{ md: 17, xs: 15 }}
-                fontWeight={500}
-                color='text.primary'
-                ml={1}
-              >
-                Danh sách chương
-              </Typography>
-            </FlexBox>
-            <Grid
-              container
-              spacing={2}
-              mt={0}
-              sx={{ maxHeight: 600, overflowY: "scroll" }}
-            >
-              {data?.chapters?.map((item: Chapter) => (
-                <Grid item xs={6} key={item.href}>
-                  <Link href={item.href}>
+                <FlexBox alignItems={"center"}>
+                  <RssFeedIcon color='info' />
+                  <Typography
+                    ml={1}
+                    fontSize={{ md: 16, xs: 14 }}
+                    fontWeight={500}
+                    color='text.primary'
+                  >
+                    Tình trạng: {data?.status}
+                  </Typography>
+                </FlexBox>
+                <FlexBox alignItems={"center"}>
+                  <FormatListBulletedIcon color='info' />
+                  <FlexBox alignItems={"center"} flexWrap='wrap'>
                     <Typography
-                      sx={{
-                        ":hover": {
-                          textDecoration: "underline",
-                          cursor: "pointer",
-                        },
-                      }}
+                      ml={1}
+                      fontSize={{ md: 16, xs: 14 }}
+                      fontWeight={500}
                       color='text.primary'
                     >
-                      {item.name}
+                      Thể loại:
                     </Typography>
-                  </Link>
-                </Grid>
-              ))}
-            </Grid>
+                    {data?.categories?.map((item: Category) => (
+                      <Link key={item.href} href={`/the-loai/${item.href}`}>
+                        <Typography
+                          color={"primary"}
+                          sx={{
+                            ":hover": {
+                              textDecoration: "underline",
+                              cursor: "pointer",
+                            },
+                            ml: 2,
+                          }}
+                          fontSize={{ md: 16, xs: 14 }}
+                        >
+                          {item.name}
+                        </Typography>
+                      </Link>
+                    ))}
+                  </FlexBox>
+                </FlexBox>
+                <ShareNovel title={slug} />
+                <Stack direction={"row"} spacing={2} alignItems={"center"}>
+                  <Button variant='contained' color='info'>
+                    Đọc từ đầu
+                  </Button>
+                  <Button variant='contained' color='info'>
+                    Đọc mới nhất
+                  </Button>
+                  <Button variant='contained' color='primary'>
+                    Đọc tiếp
+                  </Button>
+                </Stack>
+              </Stack>
+            </FlexBox>
+            <Box mt={4}>
+              <FlexBox
+                sx={{ borderBottom: "1px solid #ccc" }}
+                alignItems={"center"}
+              >
+                <ArticleIcon fontSize='medium' color='info' />
+                <Typography
+                  textTransform={"uppercase"}
+                  fontSize={{ md: 17, xs: 15 }}
+                  fontWeight={500}
+                  color='text.primary'
+                  ml={1}
+                >
+                  Nội dung
+                </Typography>
+              </FlexBox>
+              <TextMore description={data?.description} />
+            </Box>
+            <Box mt={4}>
+              <FlexBox
+                sx={{ borderBottom: "1px solid #ccc" }}
+                alignItems={"center"}
+              >
+                <FactCheckIcon fontSize='medium' color='info' />
+                <Typography
+                  textTransform={"uppercase"}
+                  fontSize={{ md: 17, xs: 15 }}
+                  fontWeight={500}
+                  color='text.primary'
+                  ml={1}
+                >
+                  Danh sách chương
+                </Typography>
+              </FlexBox>
+              <Grid
+                container
+                spacing={2}
+                mt={0}
+                sx={{
+                  maxHeight: 600,
+                  overflowY: "scroll",
+                  "&::-webkit-scrollbar-thumb": {
+                    background: primary.main,
+                  },
+                  "&::-webkit-scrollbar": {
+                    width: "8px",
+                  },
+                  "&::-webkit-scrollbar-track": {
+                    background: "#ccc",
+                  },
+                }}
+              >
+                {data?.chapters?.map((item: Chapter) => (
+                  <Grid item xs={6} key={item.href}>
+                    <LazyLoadComponent>
+                      <Link href={item.href}>
+                        <Typography
+                          sx={{
+                            ":hover": {
+                              textDecoration: "underline",
+                              cursor: "pointer",
+                            },
+                          }}
+                          color='text.primary'
+                        >
+                          {item.name}
+                        </Typography>
+                      </Link>
+                    </LazyLoadComponent>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
           </Box>
-        </Box>
-      </WidthLayout>
-    </MainLayout>
+        </WidthLayout>
+      </MainLayout>
+    </>
   );
 };
 
@@ -201,7 +226,6 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log(params);
   const slug = params?.slug as string;
   const data = await DetailAPI.novel(slug);
 
