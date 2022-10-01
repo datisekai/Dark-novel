@@ -1,7 +1,10 @@
 import { Box, Divider, Typography } from "@mui/material";
 import React, { FC } from "react";
 import WidthLayout from "../Layouts/WidthLayout";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import {
+  LazyLoadComponent,
+  LazyLoadImage,
+} from "react-lazy-load-image-component";
 import { Autoplay, Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -36,48 +39,50 @@ const Section1: FC<ISection1> = ({ title, data, isLoading }) => {
     slide = 2;
   }
   return (
-    <WidthLayout>
-      <Box sx={{ mt: 4 }}>
-        {title && (
-          <>
-            <FlexBox
-              alignItems={"center"}
-              sx={{ borderBottom: "1px solid #ccc" }}
-            >
-              <Typography
-                fontWeight={500}
-                fontSize={{ md: 18, xs: 16 }}
-                textTransform='uppercase'
-                color='text.primary'
-                mr={0.5}
+    <LazyLoadComponent>
+      <WidthLayout>
+        <Box sx={{ mt: 2 }}>
+          {title && (
+            <>
+              <FlexBox
+                alignItems={"center"}
+                sx={{ borderBottom: "1px solid #ccc" }}
               >
-                {title}
-              </Typography>
-              <LocalFireDepartmentIcon color='primary' />
-            </FlexBox>
-          </>
-        )}
-      </Box>
-      <Box mt={2}>
-        {isLoading ? (
-          <SkeletonSection1 />
-        ) : (
-          <Swiper
-            spaceBetween={15}
-            slidesPerView={slide}
-            navigation
-            autoplay
-            modules={[Navigation, Autoplay]}
-          >
-            {data?.map((item: HotNovel) => (
-              <SwiperSlide key={item.slug}>
-                <HotCard {...item} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
-      </Box>
-    </WidthLayout>
+                <Typography
+                  fontWeight={500}
+                  fontSize={{ md: 18, xs: 16 }}
+                  textTransform='uppercase'
+                  color='text.primary'
+                  mr={0.5}
+                >
+                  {title}
+                </Typography>
+                <LocalFireDepartmentIcon color='primary' />
+              </FlexBox>
+            </>
+          )}
+        </Box>
+        <Box mt={2}>
+          {isLoading ? (
+            <SkeletonSection1 />
+          ) : (
+            <Swiper
+              spaceBetween={15}
+              slidesPerView={slide}
+              navigation
+              autoplay
+              modules={[Navigation, Autoplay]}
+            >
+              {data?.map((item: HotNovel) => (
+                <SwiperSlide key={item.slug}>
+                  <HotCard {...item} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
+        </Box>
+      </WidthLayout>
+    </LazyLoadComponent>
   );
 };
 

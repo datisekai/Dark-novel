@@ -24,7 +24,7 @@ const Footer = () => {
             <Stack
               direction={{ md: "row", xs: "column" }}
               justifyContent={{ md: "space-between", xs: "center" }}
-              mt={3}
+              pt={2}
             >
               <Stack spacing={2} mt={1}>
                 <Typography

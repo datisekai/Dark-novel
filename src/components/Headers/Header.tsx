@@ -19,6 +19,8 @@ import PageviewIcon from "@mui/icons-material/Pageview";
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import useScrollY from "../../hooks/useScrollY";
 import useScrollProgress from "../../hooks/useScrollProgress";
+import CategoryData, { ICategoryData } from "../data/category";
+import LineProgress from "./LineProgress";
 
 const Header = () => {
   const {
@@ -27,7 +29,7 @@ const Header = () => {
 
   const router = useRouter();
   const width = useWidth();
-  const scrollProgress = useScrollProgress();
+
   return (
     <Box
       sx={{
@@ -49,7 +51,7 @@ const Header = () => {
             sx={{
               display: {
                 md: "none",
-                xs: "block",
+                xs: "inline-flex",
               },
             }}
           >
@@ -70,55 +72,25 @@ const Header = () => {
               spacing={2}
               ml={3}
             >
-              <Link href='/'>
-                <Typography
-                  color={router.asPath === "/" ? "primary" : "text.primary"}
-                  fontSize={16}
-                  fontWeight={600}
-                  sx={{
-                    ":hover": {
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    },
-                  }}
-                >
-                  Trang chủ
-                </Typography>
-              </Link>
-              <Link href='/theo-doi'>
-                <Typography
-                  sx={{
-                    ":hover": {
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    },
-                  }}
-                  color={
-                    router.asPath === "/theo-doi" ? "primary" : "text.primary"
-                  }
-                  fontSize={16}
-                  fontWeight={600}
-                >
-                  Theo dõi
-                </Typography>
-              </Link>
-              <Link href='/lich-su'>
-                <Typography
-                  sx={{
-                    ":hover": {
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    },
-                  }}
-                  color={
-                    router.asPath === "/lich-su" ? "primary" : "text.primary"
-                  }
-                  fontSize={16}
-                  fontWeight={600}
-                >
-                  Lịch sử
-                </Typography>
-              </Link>
+              {CategoryData?.map((item: ICategoryData) => (
+                <Link href={item.href} key={item.href}>
+                  <Typography
+                    color={
+                      router.asPath === item.href ? "primary" : "text.primary"
+                    }
+                    fontSize={16}
+                    fontWeight={600}
+                    sx={{
+                      ":hover": {
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      },
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                </Link>
+              ))}
             </Stack>
           </FlexBox>
           <Stack
@@ -149,9 +121,7 @@ const Header = () => {
           </Stack>
         </FlexBox>
       </WidthLayout>
-      <Box id='progress-container'>
-        <Box id='progress-bar' style={{ width: `${scrollProgress}%` }}></Box>
-      </Box>
+      <LineProgress />
     </Box>
   );
 };

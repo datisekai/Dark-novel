@@ -23,6 +23,7 @@ const DoneCard: FC<DoneNovel> = ({ chapter, image, name, slug }) => {
         <LazyLoadImage
           src={image}
           style={{ aspectRatio: 164 / 245, width: "100%" }}
+          effect='blur'
         />
         <Typography
           sx={{
