@@ -43,12 +43,14 @@ const Home: NextPage = () => {
           />
           <Section2
             title='Truyện mới cập nhật'
+            url='truyen-moi'
             data={dataUpComing ? dataUpComing.slice(0, 12) : []}
             isLoading={loadingUpComing}
           />
           <Section3
             title='Truyện đã hoàn thành'
             data={dataDone || []}
+            url='truyen-full'
             isLoading={loadingDone}
           />
           {/* <Section4

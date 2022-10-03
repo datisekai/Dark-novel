@@ -10,3 +10,10 @@ export interface ListNovel {
   author: string;
   currentChapter: CurrentChapter;
 }
+
+export interface ReturnListNovel {
+  data: ListNovel[];
+  totalPage: string;
+  title: string;
+  page: string;
+}

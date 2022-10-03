@@ -2,7 +2,7 @@ import { UpComingNovel } from "./../models/upComingNovel";
 import axiosClient from "../axios/axiosClient";
 import HotNovel from "../models/hotNovel";
 import { DoneNovel } from "../models/doneNovel";
-import { ListNovel } from "../models/listNovel";
+import { ListNovel, ReturnListNovel } from "../models/listNovel";
 
 const list = [
   "tien-hiep-hay",
@@ -16,7 +16,7 @@ interface IHomeAPI {
   hot: () => Promise<HotNovel[]>;
   upComing: () => Promise<UpComingNovel[]>;
   done: () => Promise<DoneNovel[]>;
-  list: (slug: string) => Promise<ListNovel[]>;
+  list: ({ slug, pageParam }: any) => Promise<ReturnListNovel>;
 }
 
 const HomeAPI: IHomeAPI = {
@@ -32,8 +32,10 @@ const HomeAPI: IHomeAPI = {
     const result = await axiosClient.get("/home/da-hoan-thanh");
     return result.data;
   },
-  list: async (slug: string) => {
-    const result = await axiosClient.get(`/home/danh-sach/${slug}`);
+  list: async ({ slug, pageParam = 1 }: any) => {
+    const result = await axiosClient.get(
+      `/home/danh-sach/${slug}?page=${pageParam}`
+    );
     return result.data;
   },
 };

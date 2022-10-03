@@ -7,30 +7,50 @@ import UpComingCard from "../Cards/UpComingCard";
 import FlexBox from "../FlexBox";
 import WidthLayout from "../Layouts/WidthLayout";
 import SkeletonSection2 from "../Skeletons/SkeletonSection2";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Link from "next/link";
 
 interface ISection2 {
   title: string;
   data: UpComingNovel[];
   isLoading: boolean;
+  url: string;
 }
 
-const Section2: FC<ISection2> = ({ title, data, isLoading }) => {
+const Section2: FC<ISection2> = ({ title, data, isLoading, url }) => {
   return (
     <LazyLoadComponent>
       <WidthLayout>
         <Box mt={4}>
           {title && (
             <>
-              <Typography
-                sx={{ borderBottom: "1px solid #ccc" }}
-                fontWeight={500}
-                fontSize={{ md: 18, xs: 16 }}
-                textTransform='uppercase'
-                mr={0.5}
-                color='text.primary'
-              >
-                {title}
-              </Typography>
+              <Link href={`/danh-sach/${url}`}>
+                <FlexBox
+                  alignItems={"center"}
+                  sx={{
+                    borderBottom: "1px solid #ccc",
+                    ":hover": {
+                      cursor: "pointer",
+                    },
+                  }}
+                >
+                  <Typography
+                    fontWeight={500}
+                    fontSize={{ md: 18, xs: 16 }}
+                    textTransform='uppercase'
+                    mr={0.5}
+                    color='text.primary'
+                    sx={{
+                      ":hover": {
+                        textDecoration: "underline",
+                      },
+                    }}
+                  >
+                    {title}
+                  </Typography>
+                  <ArrowForwardIosIcon color='info' fontSize='small' />
+                </FlexBox>
+              </Link>
             </>
           )}
           <Box>
