@@ -6,6 +6,7 @@ import HomeAPI from "../../src/actions/home";
 import Breadcumbs from "../../src/components/Breadcumbs";
 import MainLayout from "../../src/components/Layouts/MainLayout";
 import WidthLayout from "../../src/components/Layouts/WidthLayout";
+import OnTop from "../../src/components/OnTop";
 import Section5 from "../../src/components/Sections/Section5";
 
 const DanhSach = () => {
@@ -46,6 +47,7 @@ const DanhSach = () => {
             data={dataSection || []}
             fetchNextPage={fetchNextPage}
           />
+          <OnTop />
         </Box>
       </WidthLayout>
     </MainLayout>

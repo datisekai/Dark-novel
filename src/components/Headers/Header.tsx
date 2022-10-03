@@ -58,14 +58,16 @@ const Header = () => {
             <WidgetsIcon fontSize='medium' />
           </IconButton>
           <FlexBox alignItems={"center"}>
-            <LazyLoadImage
-              alt={"Logo"}
-              effect='blur'
-              style={{ width: 45, height: 45 }}
-              src={
-                "https://kaguya.live/_next/image?url=%2Flogo.png&w=1920&q=75"
-              }
-            />
+            <Link href='/'>
+              <LazyLoadImage
+                alt={"Logo"}
+                effect='blur'
+                style={{ width: 45, height: 45 }}
+                src={
+                  "https://kaguya.live/_next/image?url=%2Flogo.png&w=1920&q=75"
+                }
+              />
+            </Link>
             <Stack
               direction={"row"}
               sx={{ display: { md: "flex", xs: "none" } }}
