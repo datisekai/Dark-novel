@@ -2,6 +2,7 @@ import { Box, Button } from "@mui/material";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React, { useMemo } from "react";
+import CategoryAPI from "../../src/actions/category";
 import HomeAPI from "../../src/actions/home";
 import Breadcumbs from "../../src/components/Breadcumbs";
 import MainLayout from "../../src/components/Layouts/MainLayout";
@@ -40,7 +41,7 @@ const DanhSach = () => {
     <MainLayout>
       <WidthLayout>
         <Box pt={2}>
-          <Breadcumbs current={data?.pages[0]?.title || ""} />
+          <Breadcumbs current={data?.pages[0]?.title || "Hiện tại"} />
           <Section5
             isLoading={isLoading}
             title={data?.pages[0]?.title || ""}

@@ -21,8 +21,8 @@ const ListCard: FC<ListNovel> = ({
         ".lazy-load-image-background": {
           width: "100%",
         },
-        boxShadow:
-          "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;",
+        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+        py: 1,
       }}
     >
       <Link href={slug} prefetch={false}>
@@ -44,6 +44,7 @@ const ListCard: FC<ListNovel> = ({
               textDecoration: "underline",
               cursor: "pointer",
             },
+            px: 1,
           }}
           color='text.primary'
           fontWeight={500}
@@ -52,7 +53,7 @@ const ListCard: FC<ListNovel> = ({
           {name}
         </Typography>
       </Link>
-      <FlexBox alignItems={"center"} justifyContent='space-between'>
+      <FlexBox alignItems={"center"} justifyContent='space-between' px={1}>
         <Link href={`${currentChapter.slug}`} style={{ flex: 1 }}>
           <Typography
             sx={{

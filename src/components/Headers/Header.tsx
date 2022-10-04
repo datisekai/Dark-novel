@@ -1,7 +1,10 @@
 import {
   Box,
   Button,
+  Fade,
   IconButton,
+  Menu,
+  MenuItem,
   Stack,
   Typography,
   useTheme,
@@ -21,6 +24,7 @@ import useScrollY from "../../hooks/useScrollY";
 import useScrollProgress from "../../hooks/useScrollProgress";
 import CategoryData, { ICategoryData } from "../data/category";
 import LineProgress from "./LineProgress";
+import Category from "../Category";
 
 const Header = () => {
   const {
@@ -93,6 +97,7 @@ const Header = () => {
                   </Typography>
                 </Link>
               ))}
+              <Category />
             </Stack>
           </FlexBox>
           <Stack
