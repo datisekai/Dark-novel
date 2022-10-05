@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import React, { FC } from "react";
+import { FC, useMemo } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useAppSelector } from "../../hooks/reduxHooks";
 import { ListNovel } from "../../models/listNovel";
 import styleLineClamp from "../../utils/styleClamp";
 import FlexBox from "../FlexBox";
-import PersonIcon from "@mui/icons-material/Person";
 
 const ListCard: FC<ListNovel> = ({
   author,
@@ -14,6 +14,12 @@ const ListCard: FC<ListNovel> = ({
   name,
   slug,
 }) => {
+  const { chapter } = useAppSelector((state) => state.history);
+
+  const isExist = useMemo(() => {
+    return chapter.some((item: string) => item === currentChapter.slug);
+  }, []);
+
   return (
     <Box
       sx={{
@@ -64,7 +70,7 @@ const ListCard: FC<ListNovel> = ({
               },
               flex: 1,
             }}
-            color='primary'
+            color={isExist ? "info.100" : "primary"}
           >
             {currentChapter.name}
           </Typography>

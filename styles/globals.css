@@ -25,3 +25,17 @@ a {
     background: black;
   }
 }
+
+
+#search{
+  animation: ease-in downEffect 0.5s;
+}
+
+@keyframes downEffect{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}

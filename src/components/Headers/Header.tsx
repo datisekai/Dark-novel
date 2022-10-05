@@ -9,7 +9,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import WidthLayout from "../Layouts/WidthLayout";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import FlexBox from "../FlexBox";
@@ -25,11 +25,13 @@ import useScrollProgress from "../../hooks/useScrollProgress";
 import CategoryData, { ICategoryData } from "../data/category";
 import LineProgress from "./LineProgress";
 import Category from "../Category";
+import SettingsNav from "../SettingNav";
 
-const Header = () => {
+const Header = ({ handleIconSearch }: any) => {
   const {
     palette: { secondary },
   } = useTheme();
+  const [openSetting, setOpenSetting] = useState(false);
 
   const router = useRouter();
   const width = useWidth();
@@ -105,7 +107,7 @@ const Header = () => {
             spacing={{ md: 2, xs: 0 }}
             alignItems={"center"}
           >
-            <IconButton>
+            <IconButton onClick={handleIconSearch}>
               <SearchIcon fontSize={width > 768 ? "large" : "medium"} />
             </IconButton>
             <Button
@@ -120,7 +122,10 @@ const Header = () => {
             >
               Đăng nhập
             </Button>
-            <IconButton sx={{ display: { md: "block", xs: "none" } }}>
+            <IconButton
+              onClick={() => setOpenSetting(true)}
+              sx={{ display: { md: "block", xs: "none" } }}
+            >
               <SettingsSuggestIcon
                 fontSize={width > 768 ? "large" : "medium"}
               />
@@ -128,6 +133,10 @@ const Header = () => {
           </Stack>
         </FlexBox>
       </WidthLayout>
+      <SettingsNav
+        open={openSetting}
+        handleClose={() => setOpenSetting(false)}
+      />
       <LineProgress />
     </Box>
   );

@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterSlice from "./slices";
+import HistorySlice from "./slices/history";
+import ModeSlice from "./slices/mode";
 
 export const store = configureStore({
   reducer: {
     counter: counterSlice,
+    history: HistorySlice,
+    mode: ModeSlice,
   },
 });
 

@@ -13,6 +13,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "tippy.js/dist/tippy.css";
+import DataLayout from "../src/components/Layouts/DataLayout";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } },
@@ -31,7 +32,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
           <ThemeLayout>
-            <Component {...pageProps} />
+            <DataLayout>
+              <Component {...pageProps} />
+            </DataLayout>
             <Toaster />
           </ThemeLayout>
         </Provider>

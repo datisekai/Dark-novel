@@ -28,6 +28,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import TextMore from "../../src/components/TextMore";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import Meta from "../../src/components/Meta";
+import { useAppSelector } from "../../src/hooks/reduxHooks";
 
 interface IDetailNovel {
   data: Novel;
@@ -38,6 +39,11 @@ const DetailNovel: FC<IDetailNovel> = ({ data, slug }) => {
   const {
     palette: { primary },
   } = useTheme();
+
+  const { chapter } = useAppSelector((state) => state.history);
+
+  console.log(data);
+
   return (
     <>
       <Meta
@@ -103,23 +109,25 @@ const DetailNovel: FC<IDetailNovel> = ({ data, slug }) => {
                     >
                       Thể loại:
                     </Typography>
-                    {data?.categories?.map((item: Category) => (
-                      <Link key={item.href} href={`/the-loai/${item.href}`}>
-                        <Typography
-                          color={"primary"}
-                          sx={{
-                            ":hover": {
-                              textDecoration: "underline",
-                              cursor: "pointer",
-                            },
-                            ml: 2,
-                          }}
-                          fontSize={{ md: 16, xs: 14 }}
-                        >
-                          {item.name}
-                        </Typography>
-                      </Link>
-                    ))}
+                    {data?.categories?.map((item: Category) => {
+                      return (
+                        <Link key={item.href} href={`/the-loai/${item.href}`}>
+                          <Typography
+                            color={"primary"}
+                            sx={{
+                              ":hover": {
+                                textDecoration: "underline",
+                                cursor: "pointer",
+                              },
+                              ml: 2,
+                            }}
+                            fontSize={{ md: 16, xs: 14 }}
+                          >
+                            {item.name}
+                          </Typography>
+                        </Link>
+                      );
+                    })}
                   </FlexBox>
                 </FlexBox>
                 <ShareNovel title={slug} />
@@ -199,7 +207,13 @@ const DetailNovel: FC<IDetailNovel> = ({ data, slug }) => {
                               cursor: "pointer",
                             },
                           }}
-                          color='text.primary'
+                          color={
+                            chapter?.some(
+                              (element: string) => element === item.href
+                            )
+                              ? "info.100"
+                              : "text.primary"
+                          }
                         >
                           {item.name}
                         </Typography>

@@ -22,9 +22,12 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ReadChapSkeleton from "../../src/components/Skeletons/ReadChapSkeleton";
 import FlexBox from "../../src/components/FlexBox";
+import { useAppDispatch } from "../../src/hooks/reduxHooks";
+import { addChapter } from "../../src/redux/slices/history";
 
 const ChapNovel = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const [chapter, setChapter] = useState("");
 
@@ -42,6 +45,14 @@ const ChapNovel = () => {
       }
     }
   );
+
+  useEffect(() => {
+    if (router.asPath) {
+      dispatch(addChapter(router.asPath + "/"));
+    }
+  }, [router]);
+
+  console.log(router.asPath);
 
   const {
     palette: { text, grey, primary },
@@ -67,7 +78,6 @@ const ChapNovel = () => {
       }
     });
 
-    console.log(preChap, nextChap);
     return dataChapter
       ? {
           preChap: dataChapter[preChap]?.href || undefined,
@@ -78,8 +88,6 @@ const ChapNovel = () => {
           nextChap: undefined,
         };
   }, [dataChapter]);
-
-  console.log(toolChap);
 
   return (
     <MainLayout>
@@ -95,6 +103,9 @@ const ChapNovel = () => {
                 md: 200,
                 xs: "30%",
               },
+            },
+            img: {
+              width: "100%",
             },
           }}
         >

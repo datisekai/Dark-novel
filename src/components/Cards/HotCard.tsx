@@ -9,6 +9,7 @@ const HotCard: FC<HotNovel> = ({ image, name, slug }) => {
   const {
     palette: { secondary },
   } = useTheme();
+
   return (
     <Link href={`/${slug}`}>
       <Box sx={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;" }}>

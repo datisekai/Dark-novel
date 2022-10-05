@@ -11,6 +11,7 @@ import FlexBox from "../FlexBox";
 import { Category } from "../../models/upComingNovel";
 import { Stack } from "@mui/material";
 import Link from "next/link";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 const UpComingCard: React.FC<UpComingNovel> = ({
   category,
@@ -19,6 +20,11 @@ const UpComingCard: React.FC<UpComingNovel> = ({
   slug,
   time,
 }) => {
+  const { chapter } = useAppSelector((state) => state.history);
+
+  const isExist = React.useMemo(() => {
+    return chapter.some((item: string) => item === `/${currentChapter.slug}`);
+  }, []);
   return (
     <Box>
       <Card
@@ -73,7 +79,7 @@ const UpComingCard: React.FC<UpComingNovel> = ({
                   },
                 }}
                 variant='body2'
-                color='primary'
+                color={isExist ? "info.100" : "primary"}
                 mt={1}
               >
                 {currentChapter?.name}
