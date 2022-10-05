@@ -124,7 +124,7 @@ const Header = ({ handleIconSearch }: any) => {
             </Button>
             <IconButton
               onClick={() => setOpenSetting(true)}
-              sx={{ display: { md: "block", xs: "none" } }}
+              // sx={{ display: { md: "block", xs: "none" } }}
             >
               <SettingsSuggestIcon
                 fontSize={width > 768 ? "large" : "medium"}
