@@ -111,7 +111,7 @@ const Header = ({ handleIconSearch }: any) => {
             <IconButton onClick={handleIconSearch}>
               <SearchIcon fontSize={width > 768 ? "large" : "medium"} />
             </IconButton>
-           <a href="https://dprofile.vercel.app/" target="_blank">
+           <a href="https://dprofile.vercel.app/">
            <Button
             
             sx={{
