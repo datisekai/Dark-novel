@@ -70,7 +70,7 @@ const UpComingCard: React.FC<UpComingNovel> = ({
                 </Link>
               ))}
             </Stack>
-            <Link href={`/${currentChapter.slug}`}>
+            <Link href={`/${currentChapter.slug || "#"}`}>
               <Typography
                 sx={{
                   ":hover": {
@@ -82,7 +82,7 @@ const UpComingCard: React.FC<UpComingNovel> = ({
                 color={isExist ? "info.100" : "primary"}
                 mt={1}
               >
-                {currentChapter?.name}
+                {currentChapter?.name || "Chưa có"}
               </Typography>
             </Link>
           </CardContent>

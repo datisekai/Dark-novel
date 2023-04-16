@@ -42,8 +42,6 @@ const DetailNovel: FC<IDetailNovel> = ({ data, slug }) => {
 
   const { chapter } = useAppSelector((state) => state.history);
 
-  console.log(data);
-
   return (
     <>
       <Meta

@@ -7,14 +7,14 @@ const CategoryData: ICategoryData[] = [
     title: "Trang chủ",
     href: "/",
   },
-  {
-    title: "Theo dõi",
-    href: "/theo-doi",
-  },
-  {
-    title: "Lịch sử",
-    href: "/lich-su",
-  },
+  // {
+  //   title: "Theo dõi",
+  //   href: "/theo-doi",
+  // },
+  // {
+  //   title: "Lịch sử",
+  //   href: "/lich-su",
+  // },
 ];
 
 export default CategoryData;

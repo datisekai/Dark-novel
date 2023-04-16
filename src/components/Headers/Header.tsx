@@ -1,31 +1,27 @@
+import SearchIcon from "@mui/icons-material/Search";
+import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
+import WidgetsIcon from "@mui/icons-material/Widgets";
 import {
   Box,
   Button,
-  Fade,
   IconButton,
-  Menu,
-  MenuItem,
   Stack,
   Typography,
-  useTheme,
+  useTheme
 } from "@mui/material";
-import React, { useState } from "react";
-import WidthLayout from "../Layouts/WidthLayout";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import FlexBox from "../FlexBox";
-import { useRouter } from "next/router";
 import Link from "next/link";
-import SearchIcon from "@mui/icons-material/Search";
-import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import useWidth from "../../hooks/useWidth";
-import PageviewIcon from "@mui/icons-material/Pageview";
-import WidgetsIcon from "@mui/icons-material/Widgets";
-import useScrollY from "../../hooks/useScrollY";
-import useScrollProgress from "../../hooks/useScrollProgress";
+import Category from "../Category";
+import FlexBox from "../FlexBox";
+import WidthLayout from "../Layouts/WidthLayout";
+import SettingsNav from "../SettingNav";
 import CategoryData, { ICategoryData } from "../data/category";
 import LineProgress from "./LineProgress";
-import Category from "../Category";
-import SettingsNav from "../SettingNav";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../../config/firebase";
 
 const Header = ({ handleIconSearch }: any) => {
   const {
@@ -35,6 +31,11 @@ const Header = ({ handleIconSearch }: any) => {
 
   const router = useRouter();
   const width = useWidth();
+
+  // const handleLogin = async() => {
+  //   const response = await signInWithPopup(auth, provider);
+  //   const accessToken = response.user.getIdToken();
+  // }
 
   return (
     <Box
@@ -52,7 +53,7 @@ const Header = ({ handleIconSearch }: any) => {
       }}
     >
       <WidthLayout>
-        <FlexBox alignItems={"center"} justifyContent='space-between'>
+        <FlexBox alignItems={"center"} justifyContent="space-between">
           <IconButton
             sx={{
               display: {
@@ -61,16 +62,16 @@ const Header = ({ handleIconSearch }: any) => {
               },
             }}
           >
-            <WidgetsIcon fontSize='medium' />
+            <WidgetsIcon fontSize="medium" />
           </IconButton>
           <FlexBox alignItems={"center"}>
-            <Link href='/'>
+            <Link href="/">
               <LazyLoadImage
                 alt={"Logo"}
-                effect='blur'
+                effect="blur"
                 style={{ width: 45, height: 45 }}
                 src={
-                  "https://kaguya.live/_next/image?url=%2Flogo.png&w=1920&q=75"
+                  "/logo.png"
                 }
               />
             </Link>
@@ -110,18 +111,21 @@ const Header = ({ handleIconSearch }: any) => {
             <IconButton onClick={handleIconSearch}>
               <SearchIcon fontSize={width > 768 ? "large" : "medium"} />
             </IconButton>
-            <Button
-              sx={{
-                display: {
-                  md: "inline-flex",
-                  xs: "none",
-                },
-              }}
-              variant='contained'
-              color='primary'
-            >
-              Đăng nhập
-            </Button>
+           <a href="https://dprofile.vercel.app/" target="_blank">
+           <Button
+            
+            sx={{
+              display: {
+                md: "inline-flex",
+                xs: "none",
+              },
+            }}
+            variant="contained"
+            color="primary"
+          >
+            Liên hệ
+          </Button>
+           </a>
             <IconButton
               onClick={() => setOpenSetting(true)}
               // sx={{ display: { md: "block", xs: "none" } }}
